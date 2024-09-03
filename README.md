@@ -151,6 +151,52 @@ Next, we separate the data into a train set and a test set prior to performing a
 
 ![image](https://github.com/user-attachments/assets/7e6917b8-d553-46a7-bd4f-e5a035ed3ed0)
 
+## Drop Irrelevant Columns If Any
+
+For the purpose of this analysis, we'll only use the following columns, described by `relevant_columns`. You can find the full description of their values in the file `uk_gov_data_dense_preproc.csv` included in this repository.
+
+In the cell below, we get to reassign `X_train` so that it only contains the columns in `relevant_columns`.The sabset should lso contain the same number of rows adst the previous `x_train` set
+![image](https://github.com/user-attachments/assets/0c9db721-2c5d-45fe-adca-9e626a5f32f1)
+
+Let's look at the full `x_train` set
+**2.3.3. Convert Categorical Features into Numbers**
+
+Anything that is already `float64` or `int64` will work with our model, but these features need to be converted:
+
+* `manufacturer` (currently type `object`)
+* `model` (currently type `object`)
+* `description` (currently type `object`)
+* `transmission` (currently type `object`)
+* `transmission_type` (currently type `object`)
+* `fuel` (currently type `object`)
+* `powertrain` (currently type `object`)
+
+There are two main approaches to converting these values, depending on whether there are 2 values (meaning the categorical variable can be converted into a single binary number) or more than 2 values (meaning we need to create extra columns to represent all categories).
+In the cells below, we inspect the value counts of the specified features:
+As observed,all our features have more than 2 categories and will need to be expanded into multiple columns.
+## Handling multiple categorical data
+Categorical encoding is crucial for preparing data for machine learning models, as most algorithms require numerical inputs.
+ Unlike *Binary Category Data* ,the process for encoding *Multiple Category data*  numerically is a bit more complicated, because we will need to create multiple *"dummy"* columns that are each representing one category.
+
+To do this,we will use a common encoding method: `label encoding` from `sklearn.preprocessing`that works under the following process:
+
+1. Identify data to be transformed (typically not every column is passed to every transformer)
+2. Instantiate the transformer object
+3. Fit the transformer object (on training data only)
+4. Transform data using the transformer object
+5. Add the transformed data to the other data that was not transformed
+
+For our encoding,we will build an iterative encoding function to work on all our features one by one without the the need for a cumbersome code
+
+## Preprossesing our test data
+
+For consistency sake during our modeling,it is important for out train and test data to match
+
+
+ Everything is numeric now! We have completed the minimum necessary preprocessing to use these features in a scikit-learn model!
+
+
+ 
 
 
 
