@@ -41,3 +41,29 @@ Regulatory agencies need an efficient method to categorize vehicles into emissio
    
    - **Generalizability** -The model's performance is based on the specific dataset and may vary when applied to different datasets or vehicle types. Continuous updates and validation are required to maintain accuracy.
    - 
+   - # 2.DATA
+
+**2.1. Data Understanding**
+
+  - **Name:** Vehicle Emissions Data Set (uk_gov_data_dense_preproc.csv)
+  - **Source:** Kaggle
+
+**Description:** This dataset contains information on 6,756 vehicles, including various features related to vehicle specifications and emissions. It is designed to facilitate analysis and modeling for vehicle emissions, which can be used for classification, regulatory compliance, and environmental impact studies.The fields are:
+
+1. `car_id`                : **Number** - A unique identifier for each vehicle.
+2. `manufacturer`          : **Categorical String** - The name of the vehicle manufacturer (e.g., Ford, Toyota, BMW)
+3. `model`                 : **Categorical String** - The specific model of the vehicle (e.g., Focus, Corolla, X5)
+4. `description`           : **Categorical String** - Additional details about the vehicle, which may include information on design, features, or special attributes.
+5. `transmission`          : **Categorical String** - Gearbox type, such as "Manual" or "Automatic." This feature may influence emissions based on the type of transmission used.
+6. `transmission_type`     : **Categorical String** - "Manual", "Automatic", or "Electric - Not Applicable".
+7. `engine_size_cm3`       : **Number** - The volume of the engine’s gas displacement in cubic centimeters (cm³).
+8. `fuel`                  : **Categorical String** -The type of fuel used by the vehicle (e.g., Petrol, Diesel, Electric). Different fuels have different emission profiles.
+9. `powertrain`            : **Categorical String** -Describes the powertrain configuration (e.g., Front-Wheel Drive, All-Wheel Drive). The powertrain can impact fuel efficiency and emissions.
+10. `power_ps`             : **Number** - Power of vehicle in PferdStarke (metric measure of horsepower, equivalent to 98.6% of one HP) This feature is important for understanding the vehicle’s performance and potential emissions.
+11. `co2_emissions_gPERkm~`: **Number** - The CO2 emissions of the vehicle measured in grams per kilometer (g/km) according to the Worldwide Harmonized Light Vehicles Test Procedure (WLTP). This is the target variable for classification into emission levels.
+
+**2.2. Data Inspection And Analysis**
+
+To get a general sense of the structure and contents,we examine our dataset for preparation to ensure that the data is clean, well-understood, and properly prepared for creating accurate and reliable models.This is by checking basic information like the shape and consistency,looking out for missing, duplicates and NaN values,checking for duplicates
+![image](https://github.com/user-attachments/assets/3581fb24-2966-49a4-87bb-96e04d5b9926)
+
