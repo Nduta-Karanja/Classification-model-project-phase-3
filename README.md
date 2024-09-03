@@ -195,8 +195,112 @@ For consistency sake during our modeling,it is important for out train and test 
 
  Everything is numeric now! We have completed the minimum necessary preprocessing to use these features in a scikit-learn model!
 
+![image](https://github.com/user-attachments/assets/0bbed496-539e-4aba-8a63-90a5e43d1e3b)
+![image](https://github.com/user-attachments/assets/f016ddcc-16bd-469a-be41-33abd21cd2df)
 
- 
+
+# 3.MODEl DEVELOPMENT
+In this stage,we will be using `Scikit learn` as our modeling library.
+We begin by scalling our data to allow us to use consistent data into our modeling process
+
+
+ **3.1. Scalling Data**
+ ![image](https://github.com/user-attachments/assets/90a4936a-8188-4cb7-a07f-44f9a436968c)
+
+ 1.Logistic Regressi
+ **3.2. Build Base model**
+After scaling, you train your model using the standardized dataon Model
+
+
+![image](https://github.com/user-attachments/assets/3b2aa1d1-e1a4-440c-b30f-e8cb9b8e2868)
+**Baseline Model Summary**
+
+## Model Evaluation
+
+1. Confusion Matrix
+Observation: The model mostly predicts class 0, with 37 correct predictions for this class. Predictions for other classes are absent, suggesting the model fails to classify these classes effectively
+
+2.Classification Report
+* Overall Accuracy: 0.09
+
+**Macro Average Metrics:**
+* Precision: 0.02
+* Recall: 0.05
+* F1-Score: 0.02
+
+**Weighted Average Metrics:**
+* Precision: 0.05
+* Recall: 0.09
+* F1-Score: 0.05
+
+3.**Class-Specific Performance:**
+* Class 0.0: Perfect performance (precision, recall, and F1-score of 1.00).
+* Other Classes: Metrics are 0.00 or very low, indicating a lack of effective predictions and true samples for these classes.
+
+
+**Key Findings**
+* The model is highly effective for class 0, but it fails to classify other classes, resulting in very low overall performance metrics.
+ The model's inability to handle class imbalance and sparse class representation contributes significantly to its poor performance.
+
+
+2.Decision Tree Model
+To assertain,improvement,we will build and evaluate a decision tree model
+
+![image](https://github.com/user-attachments/assets/69f97d5f-7619-430e-a333-cd526c61696f)
+
+**Summary of Decision Tree Model Performance**
+1. **Model Accuracy:**
+
+Accuracy: 22.08%
+This indicates that approximately 22% of the predictions are correct. This is an improvement over the logistic regression model but still quite low.
+
+2. **Classification Report:**
+
+Precision, Recall, F1-Score by Class:
+
+**Class 0.0:** Excellent performance with precision, recall, and F1-score all at 1.00. This suggests that the model is very good at predicting this class.
+**Class 18.0 and others with zero support (like 35.0, 39.0):** The model cannot make predictions for these classes. The precision, recall, and F1-scores are undefined, indicating these classes are not being predicted or are absent in the test set.
+**Other Classes:** The performance varies, with some classes like 25.0, 33.0, and 38.0 showing relatively good performance, while others like 22.0, 30.0, and 32.0 have moderate score
+
+**Key Insights:**
+* **Class Imbalance:** The Decision Tree model still suffers from class imbalance, as indicated by the inability to predict several classes and the presence of undefined metrics.
+
+* **Performance on Specific Classes:** The model performs well on some classes (e.g., class 0.0) but poorly on others. This uneven performance suggests that the model may not be capturing the characteristics of less frequent classes effectively.
+
+* **Model Choice and Complexity:** While the Decision Tree has improved over logistic regression, it still may not be the most effective model for your dataset. Decision Trees can overfit to the training data, especially if not properly tuned.
+
+* ## MODEL COMPARISON
+
+1. Decision Tree Model:
+
+* Accuracy: 22.08%
+* Macro Average F1-Score: 0.16
+* Weighted Average F1-Score: 0.22
+* The Decision Tree model has shown some improvement over the previous model but still struggles significantly with most classes. This is reflected in the low macro and * weighted average F1-scores, and the warnings about undefined metrics for certain labels.
+
+2. Logistic Regression Model:
+
+* Accuracy: 9.5%
+* Macro Average F1-Score: 0.02
+* Weighted Average F1-Score: 0.05
+* The logistic regression model performed worse overall compared to the Decision Tree model.
+
+* 
+## ANALYSIS AND RECOMMENDATION
+
+**1. Class Imbalance:**
+
+* Both models struggle with class imbalance, as indicated by the undefined metrics and low scores for many classes. Since the Decision Tree performs better but still faces issues, it's important to address this imbalance.
+`Recommendation:` Use resampling techniques like SMOTE or ADASYN, or implement class weighting to handle class imbalance.
+
+**2. Data Quality and Feature Engineering:**
+* Poor performance can also stem from inadequate feature representation or irrelevant features.
+`Recommendation:` Ensure that feature engineering is thoroughly done. We might need to add new features, remove irrelevant ones, or perform feature scaling.
+
+**3. Model Complexity:**
+* The Decision Tree model might be too complex or too simple depending on its parameters, leading to overfitting or underfitting.
+`Recommendation:` Tune hyperparameters such as maximum depth, minimum samples per leaf, or use techniques like pruning to optimize the Decision Tree. Consider other models like Random Forests or Gradient Boosting for potentially better results.
+
 
 
 
